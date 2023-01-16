@@ -39,10 +39,10 @@ app.post('/', (request: express.Request, response: express.Response) => {
                 response.write(`<h1>Search(city) : ${query}</h1>`)
                 response.write(`<h2>${resData.message}</h2>`)
             } else {
-                response.write(`<h1>The weather in ${resData.name} </h1>`)
-                response.write(`<h2>temp ${resData.main.temp} degrees</h2>`)
-                response.write(`<h2>${resData.weather[0].main}</h2>`) 
-                response.write(`<h3>${resData.weather[0].description}</h3>`)
+                response.write(`<h1>สภาพอากาศใน ${resData.name} </h1>`)
+                response.write(`<h2>อุณหภูมิ=>${resData.main.temp} degrees</h2>`)
+                response.write(`<h2>เมฆ=>${resData.weather[0].main}</h2>`) 
+                response.write(`<h3>ลักษณะเมฆ=>${resData.weather[0].description}</h3>`)
             }
             console.log(resData)
             response.write(`<a href='/'>Back</a>`)
