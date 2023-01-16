@@ -19,8 +19,9 @@ app.get('/', (request: express.Request, response: express.Response) => {
 app.post('/', (request: express.Request, response: express.Response) => {
     const query = request.body.query
     const unit = 'metric'
+    const lang = 'th'
     const endpoint = 'https://api.openweathermap.org/data/2.5/weather'
-    const url = `${endpoint}?q=${query}&units=${unit}&appid=${apiKey}`
+    const url = `${endpoint}?q=${query}&units=${unit}&langs=${lang}&appid=${apiKey}`
     https.get(url, (res: IncomingMessage) => {
         console.log(res.statusCode)
         res.on('data', (data) => {
@@ -39,9 +40,10 @@ app.post('/', (request: express.Request, response: express.Response) => {
                 response.write(`<h2>${resData.message}</h2>`)
             } else {
                 response.write(`<h1>The weather in ${resData.name} </h1>`)
-                response.write(`<h2>${resData.weather[0].main} 
-(temp ${resData.main.temp} degrees)</h2>`)
+                response.write(`<h2>${resData.weather[0].main} (temp ${resData.main.temp} degrees)</h2>`)
+                response.write(`<h3>${resData.weather[0].description}</h3>`)
             }
+            console.log(resData)
             response.write(`<a href='/'>Back</a>`)
             response.write('<body')
             response.send()
